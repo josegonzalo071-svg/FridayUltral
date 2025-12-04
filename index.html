@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Friday PRO+ Ultra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay" class="overlay">
+  <div class="login-card">
+    <h2>🔐 Friday Login</h2>
+
+    <div class="tabs">
+      <button id="tabLogin" class="tab-btn active">Login</button>
+      <button id="tabSignup" class="tab-btn">Sign Up</button>
+    </div>
+
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+
+    <div id="nameField" class="hidden">
+      <input id="displayName" placeholder="Your name (how Friday will call you)">
+    </div>
+
+    <button id="btnAuth" class="btn primary">Continue</button>
+    <p id="authError" class="error-text"></p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="app hidden">
+
+  <!-- HEADER -->
+  <header class="header">
+    <img src="assets/avatar.png" class="avatar" id="avatarImg">
+    <div class="header-text">
+      <h1 id="appTitle">Friday — Ultra Mode</h1>
+      <p id="appStatus">Idle…</p>
+    </div>
+
+    <div class="header-right">
+      <button id="themeToggle" class="btn icon">🌙</button>
+      <button id="btnMenu" class="btn icon">☰</button>
+    </div>
+  </header>
+
+  <!-- SIDE MENU -->
+  <aside id="sideMenu" class="side-menu">
+    <button class="menu-btn" data-tab="chat">💬 Chat</button>
+    <button class="menu-btn" data-tab="vault">📁 Vault</button>
+    <button class="menu-btn" data-tab="study">📘 Study</button>
+    <button class="menu-btn" data-tab="settings">⚙ Settings</button>
+    <button class="menu-btn red" id="logoutBtn">🚪 Logout</button>
+  </aside>
+
+  <!-- MAIN TABS -->
+  <main id="mainView" class="main">
+
+    <!-- CHAT TAB -->
+    <section id="tab-chat" class="tab active">
+      <div id="chatBox" class="chat-box"></div>
+
+      <div class="chat-controls">
+        <button id="btnMic" class="btn primary">🎙 Talk</button>
+        <input id="manualInput" placeholder="Type something in English…">
+        <button id="btnSend" class="btn secondary">Send</button>
+      </div>
+      <p class="hint">
+        Say <b>"Hello Friday"</b> to start. Friday will answer in this format:
+        <br>EN: (respuesta en inglés)
+        <br>ES: (traducción en español)
+        <br>FIX: (corrección corta o "OK")
+      </p>
+    </section>
+
+    <!-- VAULT TAB -->
+    <section id="tab-vault" class="tab hidden">
+      <h2>📁 Smart Vault</h2>
+
+      <div class="vault-topbar">
+        <input id="vaultSearch" placeholder="Search notes, birthdays or private data…">
+        <button id="btnExportVault" class="btn secondary">💾 Export</button>
+        <input id="vaultImportFile" type="file" accept=".json" class="hidden">
+        <button id="btnImportVault" class="btn secondary">📥 Import</button>
+      </div>
+
+      <div class="vault-section">
+        <h3>📝 Notes</h3>
+        <input id="noteTitle" placeholder="Title">
+        <textarea id="noteContent" placeholder="Write a note…"></textarea>
+        <button id="btnAddNote" class="btn secondary">Add Note</button>
+        <div id="notesList" class="list"></div>
+      </div>
+
+      <div class="vault-section">
+        <h3>🎂 Birthdays</h3>
+        <input id="bdayName" placeholder="Name">
+        <input id="bdayDate" type="date">
+        <button id="btnAddBirthday" class="btn secondary">Add Birthday</button>
+        <div id="birthdaysList" class="list"></div>
+      </div>
+
+      <div class="vault-section">
+        <h3>🔒 Private Data</h3>
+        <input id="privLabel" placeholder="Label (e.g. Work email)">
+        <input id="privType" placeholder="Type (email, user, note… optional)">
+        <input id="privValue" placeholder="Value">
+        <button id="btnAddPrivate" class="btn secondary">Add</button>
+        <div id="privList" class="list"></div>
+      </div>
+    </section>
+
+    <!-- STUDY TAB -->
+    <section id="tab-study" class="tab hidden">
+      <h2>📘 Study Sources</h2>
+
+      <input id="srcTitle" placeholder="Document title (e.g. English Course Unit 1)">
+      <input id="srcOrigin" placeholder="PDF / YouTube / Manual">
+      <textarea id="srcContent" placeholder="Paste lesson text, explanations or dialogues…"></textarea>
+
+      <button id="btnAddSource" class="btn secondary">Save Source</button>
+
+      <h3>Saved Sources</h3>
+      <div id="srcList" class="list"></div>
+    </section>
+
+    <!-- SETTINGS TAB -->
+    <section id="tab-settings" class="tab hidden">
+      <h2>⚙ Settings</h2>
+
+      <label>Groq API Key</label>
+      <input id="groqKey" placeholder="gsk_…">
+
+      <label>Model</label>
+      <input id="groqModel" value="llama-3.1-8b-instant">
+
+      <button id="btnTestGroq" class="btn secondary">Test Connection</button>
+
+      <p class="hint">
+        Voice reads only the EN: part.<br>
+        Friday will always respond with:
+        <br>EN: (English answer)
+        <br>ES: (Spanish translation)
+        <br>FIX: (short correction, or "OK" if fine)
+      </p>
+    </section>
+
+  </main>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
